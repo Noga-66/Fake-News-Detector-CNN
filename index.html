@@ -7,92 +7,237 @@
     <style>
         body {
             background: linear-gradient(to right, #1e3c72, #2a5298);
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             color: white;
             text-align: center;
             padding: 50px;
+            margin: 0;
         }
 
         .container {
-            background: white;
-            color: black;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
             padding: 30px;
             border-radius: 15px;
-            width: 50%;
+            width: 90%;
+            max-width: 600px;
             margin: auto;
             box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
 
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
         textarea {
-            width: 90%;
+            width: 100%;
             height: 150px;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
-            border: 1px solid #ccc;
-            resize: none;
+            border: 2px solid #ddd;
+            resize: vertical;
+            font-size: 16px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #2a5298;
         }
 
         button {
             margin-top: 20px;
-            padding: 10px 25px;
+            padding: 15px 40px;
             border: none;
             border-radius: 10px;
             background: #2a5298;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
         }
 
         button:hover {
             background: #1e3c72;
+            transform: translateY(-2px);
         }
 
-        #result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
         }
 
         #loading {
             display: none;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .true {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .fake {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .error {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 16px;
             margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <h1>📰 Fake News Detection</h1>
+    <h1>📰 Fake News Detector</h1>
 
     <div class="container">
-        <textarea id="article" placeholder="Enter news article here..."></textarea><br>
+        <textarea id="article" placeholder="Enter news article text here... (paste the full article or paragraph)"></textarea><br>
 
-        <button onclick="checkNews()">Check</button>
+        <button id="checkBtn" onclick="checkNews()">🔍 Check News</button>
 
-        <div id="loading">⏳ Checking...</div>
+        <div id="loading">⏳ Analyzing article... Please wait</div>
 
         <div id="result"></div>
     </div>
 
 <script>
 function checkNews() {
-    let text = document.getElementById("article").value;
+    // Reset UI
+    const resultDiv = document.getElementById("result");
+    const loadingDiv = document.getElementById("loading");
+    const checkBtn = document.getElementById("checkBtn");
+    const articleText = document.getElementById("article").value.trim();
 
-    document.getElementById("loading").style.display = "block";
-    document.getElementById("result").innerText = "";
+    // Validation
+    if (!articleText) {
+        showResult("⚠️ Please enter some text to analyze!", "error");
+        return;
+    }
 
+    if (articleText.length < 10) {
+        showResult("⚠️ Please enter at least 10 characters for accurate analysis!", "error");
+        return;
+    }
+
+    // Show loading
+    checkBtn.disabled = true;
+    checkBtn.textContent = "Analyzing...";
+    loadingDiv.style.display = "block";
+    resultDiv.innerHTML = "";
+
+    // Simulate analysis with better logic
     setTimeout(() => {
-        document.getElementById("loading").style.display = "none";
-
-        // Fake simple logic for demo
-        if (text.length > 100) {
-            document.getElementById("result").innerText = "True News ✅";
-        } else {
-            document.getElementById("result").innerText = "Fake News ❌";
+        try {
+            analyzeArticle(articleText);
+        } catch (error) {
+            console.error("Analysis error:", error);
+            showResult("❌ Error during analysis. Please try again!", "error");
+        } finally {
+            // Reset button
+            checkBtn.disabled = false;
+            checkBtn.textContent = "🔍 Check News";
+            loadingDiv.style.display = "none";
         }
-
-    }, 1000);
+    }, 1500 + Math.random() * 1000); // Random delay 1.5-2.5s
 }
+
+function analyzeArticle(text) {
+    const resultDiv = document.getElementById("result");
+    
+    // More sophisticated fake analysis logic
+    const lowerText = text.toLowerCase();
+    const wordCount = text.split(/\s+/).length;
+    
+    // Check for common fake news indicators
+    const fakeIndicators = [
+        'breaking', 'shocking', 'urgent', 'exclusive', 'sensational',
+        'you won\'t believe', 'click here', 'secret', 'hidden truth'
+    ];
+    
+    const hasFakeWords = fakeIndicators.some(indicator => 
+        lowerText.includes(indicator)
+    );
+    
+    const allCapsRatio = (text.match(/[A-Z]/g) || []).length / text.length;
+    const exclamationCount = (text.match(/!/g) || []).length;
+    const questionCount = (text.match(/\?/g) || []).length;
+    
+    // Scoring system (0-100, higher = more likely fake)
+    let fakeScore = 0;
+    
+    if (hasFakeWords) fakeScore += 30;
+    if (allCapsRatio > 0.15) fakeScore += 20;
+    if (exclamationCount > 3) fakeScore += 25;
+    if (questionCount > 5) fakeScore += 15;
+    if (wordCount < 50 && hasFakeWords) fakeScore += 20;
+    
+    // No external server calls - pure client-side
+    if (fakeScore > 50) {
+        showResult(`🚨 FAKE NEWS DETECTED ❌<br><small>Confidence: ${(fakeScore).toFixed(0)}%</small>`, "fake");
+    } else {
+        showResult(`✅ LIKELY TRUE NEWS<br><small>Confidence: ${100 - fakeScore.toFixed(0)}%</small>`, "true");
+    }
+}
+
+function showResult(message, type) {
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = message;
+    resultDiv.className = type;
+}
+
+// Allow Enter key to trigger analysis (Shift+Enter for new line)
+document.getElementById("article").addEventListener("keydown", function(e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        checkNews();
+    }
+});
+
+// Auto-resize textarea
+document.getElementById("article").addEventListener("input", function() {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+});
 </script>
 
 </body>
