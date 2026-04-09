@@ -47,15 +47,15 @@ This project detects fake news using Deep Learning. It was trained on a large da
 
  Fake-News-CNN/
 
- ├── Fake_News_CNN.ipynb          # Main Jupyter Notebook
- ├── True - True.csv              # Real news dataset
- ├── Fake - Fake.csv              # Fake news dataset
- ├── index.html                    
- ├── requirements.txt
- └── README.md
+ - Fake_News_CNN.ipynb          # Main Jupyter Notebook
+ - True - True.csv              # Real news dataset
+ - Fake - Fake.csv              # Fake news dataset
+ - index.html                    
+ - requirements.txt
+ - README.md
 ---
-
-📝 Example
+   
+## 📝 Example
 Input:
 "Government announces new economic reform plan"
 Output:
@@ -63,15 +63,15 @@ Output:
 Confidence: 100%
 
 ---
-🔮 Future Improvements
+## 🔮 Future Improvements
 
-Add Arabic language support
-Improve UI/UX
-Deploy using Streamlit Sharing / Hugging Face Spaces / Render
-Add user history and feedback system
+- Add Arabic language support
+- Improve UI/UX
+- Deploy using Streamlit Sharing / Hugging Face Spaces / Render
+- Add user history and feedback system
 
 ---
-👤 Author
+## 👤 Author
 Nada Hossam 
 
 
