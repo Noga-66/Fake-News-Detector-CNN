@@ -74,31 +74,26 @@
         <div id="result"></div>
     </div>
 
-    <script>
-        function checkNews() {
-            let text = document.getElementById("article").value;
+<script>
+function checkNews() {
+    let text = document.getElementById("article").value;
 
-            document.getElementById("loading").style.display = "block";
-            document.getElementById("result").innerText = "";
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("result").innerText = "";
 
-            fetch("https://your-api.onrender.com/predict", {   
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({text: text})
-            })
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById("loading").style.display = "none";
-                document.getElementById("result").innerText = data.result;
-            })
-            .catch(err => {
-                document.getElementById("loading").style.display = "none";
-                document.getElementById("result").innerText = "Error connecting to server ❌";
-            });
+    setTimeout(() => {
+        document.getElementById("loading").style.display = "none";
+
+        // Fake simple logic for demo
+        if (text.length > 100) {
+            document.getElementById("result").innerText = "True News ✅";
+        } else {
+            document.getElementById("result").innerText = "Fake News ❌";
         }
-    </script>
+
+    }, 1000);
+}
+</script>
 
 </body>
 </html>
