@@ -45,13 +45,14 @@ This project detects fake news using Deep Learning. It was trained on a large da
 
 ## 📁 Project Structure
 
-Fake-News-CNN/
-├── Fake_News_CNN.ipynb          # Main Jupyter Notebook
-├── True - True.csv              # Real news dataset
-├── Fake - Fake.csv              # Fake news dataset
-├── index.html                    
-├── requirements.txt
-└── README.md
+ Fake-News-CNN/
+
+ ├── Fake_News_CNN.ipynb          # Main Jupyter Notebook
+ ├── True - True.csv              # Real news dataset
+ ├── Fake - Fake.csv              # Fake news dataset
+ ├── index.html                    
+ ├── requirements.txt
+ └── README.md
 ---
 
 📝 Example
