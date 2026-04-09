@@ -36,7 +36,7 @@ This project detects fake news using Deep Learning. It was trained on a large da
 🔗 **Try it live here:**  
 [Fake News Detector](https://noga-66.github.io/Fake-News-Detector-CNN/)
 
-*(Replace the link above with your actual deployed app URL)*
+
 
 
 <img width="1594" height="898" alt="Screenshot 2026-04-09 230733" src="https://github.com/user-attachments/assets/2ef08617-8240-486d-a7f4-b3f95e3d07bf" />
