@@ -2,8 +2,14 @@
 
 A modern **Fake News Detection** web application built using a **Convolutional Neural Network (CNN)** to classify news articles as **Real** or **Fake** with high accuracy.
 
-![Fake News Detector Interface](https://i.imgur.com/your-image-link.png)
-<!-- غيري الرابط ده بالرابط الحقيقي للصورة بعد ما ترفعيها على GitHub أو Imgur -->
+
+
+<img width="1715" height="883" alt="Screenshot 2026-04-09 224252" src="https://github.com/user-attachments/assets/8103c2b8-500b-4ece-a3da-f9d44852ea42" />
+
+
+<img width="1754" height="904" alt="Screenshot 2026-04-09 230604" src="https://github.com/user-attachments/assets/c3901c6d-3215-4ff9-a25a-d5b0c89be3b6" />
+
+<img width="1651" height="905" alt="Screenshot 2026-04-09 230650" src="https://github.com/user-attachments/assets/c282f66b-9294-4bd1-8120-741910cdfe66" />
 
 ---
 
@@ -28,11 +34,12 @@ This project detects fake news using Deep Learning. It was trained on a large da
 ## 🚀 Live Demo
 
 🔗 **Try it live here:**  
-[Fake News Detector](https://your-deployment-link.com)
+[Fake News Detector](https://noga-66.github.io/Fake-News-Detector-CNN/)
 
 *(Replace the link above with your actual deployed app URL)*
 
-![Fake News Detector Screenshot](https://i.imgur.com/your-image-link.png)
+
+<img width="1594" height="898" alt="Screenshot 2026-04-09 230733" src="https://github.com/user-attachments/assets/2ef08617-8240-486d-a7f4-b3f95e3d07bf" />
 
 ---
 
